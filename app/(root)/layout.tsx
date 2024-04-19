@@ -1,25 +1,20 @@
-import { authOptions } from '@/libs/AuthOptions'
-import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation';
-import React from 'react'
+import { authOptions } from "@/libs/AuthOptions";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import React from "react";
 
-interface ProtectedRootLayoutProps{
-    children: React.ReactNode
-  }
+interface ProtectedRootLayoutProps {
+  children: React.ReactNode;
+}
 
 export default async function ProtectedRootLayout({
-  children
+  children,
 }: ProtectedRootLayoutProps) {
-
   const session = await getServerSession(authOptions);
 
-  if(!session?.user?.email){
-    redirect("/signin");
+  if (!session?.user?.email) {
+    redirect("/signup");
   }
 
-  return (
-    <main>
-      {children}
-    </main>
-  )
+  return <main>{children}</main>;
 }
