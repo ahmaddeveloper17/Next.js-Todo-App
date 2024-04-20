@@ -1,13 +1,11 @@
 // Home page ...
-"use client";
 import React from "react";
 import iconImage from "../../../public/assets/icon.png";
 import profileImage from "../../../public/assets/profile.png";
 import Image from "next/image";
 import Link from "next/link";
-import useHome from "../../../hooks/useHome";
+import HomeTask from "@/components/HomeTask";
 function Home() {
-  const { handleCheckboxChange, isChecked } = useHome();
   return (
     <div>
       <div className=" bg-[#F9F5EB] w-auto h-[96px] flex">
@@ -37,26 +35,7 @@ function Home() {
             className="  placeholder-[#EA5455] w-[300px] sm:w-[450px] text-[#EA5455] pl-[32px] bg-[#F9F5EB] mt-[16px] font-ibm-plex-mono text-2xl font-medium leading-[39px] rounded-[16px] border-[5px] bordor-color-[#FF7315] lg:w-[597px] h-[58px] border-[#FF7315]"
           />
         </div>
-        <div className="mt-[49px]">
-          <input
-            className="w-6 h-6 mr-2 cursor-pointer"
-            type="checkbox"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-            style={{
-              appearance: "none",
-              border: "2px solid #FF7315",
-              borderRadius: "4px",
-              outline: "none",
-            }}
-          />
-          <label
-            className="font-ibm-plex-mono text-[40px] md:text-[60px] text-[#EA5455] font-medium"
-            style={isChecked ? { textDecoration: "line-through" } : {}}
-          >
-            Completed task
-          </label>{" "}
-        </div>
+        <HomeTask />
       </div>
     </div>
   );

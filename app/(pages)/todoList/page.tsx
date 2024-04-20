@@ -50,9 +50,11 @@ function page() {
           <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
             Home
           </h1>
-          <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
-            + Add List.
-          </h1>
+          <Link href="/addList">
+            <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
+              + Add List.
+            </h1>
+          </Link>
         </div>
       </div>
     </div>

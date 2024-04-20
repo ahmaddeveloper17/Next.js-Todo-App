@@ -28,7 +28,7 @@ export default function LoginForm() {
 
     if (login?.ok) {
       toast.success("Correct login");
-      window.location.assign("/addList");
+      window.location.assign("/todoList");
     } else if (login?.error) {
       toast.error(login?.error);
     }

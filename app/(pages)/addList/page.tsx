@@ -72,11 +72,9 @@ function page() {
       </div>
       <div className="flex items-center justify-center">
         <div className="w-[210px] mt-[94px] border-[#FF7315] h-[63px] bg-[#FF7315] border-[5px] rounded-[55px]">
-          <Link href="/todoList">
-            <button className="font-ibm-plex-mono text-30 font-medium leading-39 text-[#232020] py-[12px] px-[55px]">
-              <h2>Add List.</h2>
-            </button>
-          </Link>
+          <button className="font-ibm-plex-mono text-30 font-medium leading-39 text-[#232020] py-[12px] px-[55px]">
+            <h2>Add List.</h2>
+          </button>
         </div>
       </div>
     </div>
