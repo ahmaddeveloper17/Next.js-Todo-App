@@ -22,7 +22,7 @@ export default async function page() {
       <div>
         <div className="  flex flex-col items-center">
           <h2 className=" text-[#F4F4F4] text-[40px] mt-[80px] pl-[32px] font-Stint Ultra Condensed   md:text-[64px] font-medium leading-[39px]">
-            Settings<span className="text-[#FF7315] ml-[-16px]">.</span>
+            Settings <span className="text-[#FF7315] ml-[-16px]">.</span>
           </h2>
         </div>
         <div className="flex justify-center items-center">

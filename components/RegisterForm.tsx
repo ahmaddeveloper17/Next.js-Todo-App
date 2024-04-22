@@ -102,7 +102,6 @@ export default function RegisterForm() {
           className="flex flex-row items-center bg-[#232020] rounded-[55px] border-[5px] w-[307px] md:w-[447px] h-[72px] border-[#FF7315] gap-3 mt-[64px]"
           onClick={() => {
             signIn("google");
-            router.push("/homePage");
           }}
         >
           <Image

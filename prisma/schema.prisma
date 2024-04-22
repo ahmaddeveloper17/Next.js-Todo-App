@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,3 +17,7 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+model AddList {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  ListName String
+}

@@ -1,4 +1,5 @@
 // Add List ...
+"use client";
 import Image from "next/image";
 import React from "react";
 import iconImage from "../../../public/assets/icon.png";
@@ -6,8 +7,22 @@ import settingWhite from "../../../public/assets/settingWhite.png";
 import Link from "next/link";
 import StyleSheet from "./style";
 import AddCard from "../../../components/AddCard";
-
-function page() {
+import AddListsButton from "@/components/AddListsButton";
+const Page: React.FC = () => {
+  const handleCreateData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/addList", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (error) {
+      console.error("Error creating data:", error);
+    }
+  };
   return (
     <div className="bg ">
       <div className="flex justify-between mt-[25px] px-[25px]">
@@ -70,15 +85,41 @@ function page() {
           buttonStyles2={StyleSheet.nine2}
         />
       </div>
-      <div className="flex items-center justify-center">
-        <div className="w-[210px] mt-[94px] border-[#FF7315] h-[63px] bg-[#FF7315] border-[5px] rounded-[55px]">
-          <button className="font-ibm-plex-mono text-30 font-medium leading-39 text-[#232020] py-[12px] px-[55px]">
-            <h2>Add List.</h2>
-          </button>
-        </div>
-      </div>
+      <AddListsButton onClick={handleCreateData} />
     </div>
   );
-}
+};
+export default Page;
 
-export default page;
+// pages/index.tsx
+// "use client";
+// import React from "react";
+// import AddListsButton from "@/components/AddListsButton";
+
+// const Page: React.FC = () => {
+//   const handleCreateData = async () => {
+//     try {
+//       const response = await fetch("http://localhost:3000/api/addList", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       });
+
+//       const responseData = await response.json();
+//       console.log(responseData);
+//       // Handle response data as needed
+//     } catch (error) {
+//       console.error("Error creating data:", error);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h1>Next.js TypeScript Button Example</h1>
+//       <AddListsButton onClick={handleCreateData} />
+//     </div>
+//   );
+// };
+
+// export default Page;
