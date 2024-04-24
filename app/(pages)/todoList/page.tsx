@@ -1,11 +1,29 @@
 // Todo list ...
-
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import iconImage from "../../../public/assets/icon.png";
 import settingWhite from "../../../public/assets/settingWhite.png";
 import Link from "next/link";
+import axios from "axios";
+interface TodoItem {
+  ListName: string;
+}
 function page() {
+  const [todoList, setTodoList] = useState<TodoItem[]>([]);
+  const handleListData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/addList");
+      console.log("🚀 ~ handleListData ~ data:", response.data);
+      setTodoList(response.data);
+    } catch (error) {
+      console.log("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleListData();
+  }, []);
   return (
     <div className="bg ">
       <div className="w-auto flex">
@@ -29,27 +47,17 @@ function page() {
           </h2>
         </div>
         <div className="mt-[30px] ml-[50px]  md:ml-[295px]">
-          <Link href="/homePage">
-            {" "}
-            <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
-              Home
-            </h1>
-          </Link>
-          <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
-            Work
-          </h1>
-          <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
-            Home
-          </h1>
-          <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
-            Work
-          </h1>
-          <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
-            Home
-          </h1>
-          <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
-            Home
-          </h1>
+          <div className="text-[#F4F4F4] font-medium text-[64px] underline">
+            {todoList.map((todoItem, index) => (
+              // <Link key={index} href="/homePage">
+              <Link
+                key={index}
+                href={`/homePage?ListName=${todoItem.ListName}`}
+              >
+                <h1>{todoItem.ListName}</h1>
+              </Link>
+            ))}
+          </div>
           <Link href="/addList">
             <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
               + Add List.

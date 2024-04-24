@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import HomeTask from "@/components/HomeTask";
 function Home() {
+  
   return (
     <div>
       <div className=" bg-[#F9F5EB] w-auto h-[96px] flex">

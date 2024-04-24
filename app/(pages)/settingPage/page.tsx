@@ -41,7 +41,7 @@ export default async function page() {
             </h2>
             <input
               type="text"
-              placeholder={session?.user?.name}
+              placeholder={session?.user?.name ?? "Enter your Name"}
               className="placeholder-[#F4F4F4] text-[white] bg-[#232020] mt-[16px] pl-[32px] font-ibm-plex-mono text-2xl font-medium leading-[39px] rounded-[30px] border-[5px] border-[#FF7315] w-[307px] sm:w-[447px] h-[58px]"
             />
           </div>
@@ -53,7 +53,7 @@ export default async function page() {
             </h2>
             <input
               type="email"
-              placeholder={session?.user?.email}
+              placeholder={session?.user?.email ?? "Enter Your Email"}
               className="placeholder-[#F4F4F4] text-[white] pl-[32px] bg-[#232020] mt-[16px] font-ibm-plex-mono text-2xl font-medium leading-[39px] rounded-[30px] border-[5px] border-[#FF7315] w-[307px] sm:w-[447px] h-[58px]"
             />
           </div>

@@ -1,65 +1,53 @@
-// // import { NextResponse } from "next/server";
-// // import { connectMongoDB } from "@/libs/google";
-
-// // const newList = [
-// //   {
-// //     id: "1",
-// //     ListName: "Todo List 1",
-// //   },
-// //   {
-// //     id: "2",
-// //     ListName: "Todo List 2",
-// //   },
-// //   {
-// //     id: "3",
-// //     ListName: "Todo List 3",
-// //   },
-// // ];
-
-// // export const POST = async (req: any) => {
-// //   const AddList = await req.json();
-// //   await connectMongoDB();
-// //   await AddList.create(newList);
-
-// //   AddList.push(newList);
-
-// //   return NextResponse.json({ message: "Post successfully created" });
-// // };
-
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+export const POST = async (request: NextRequest) => {
+  const prisma = new PrismaClient();
 
-const newList = [
-  {
-    ListName: "Muhammad Ahmad",
-  },
-  {
-    ListName: "Ali Azeem",
-  },
-];
-
-export const POST = async (req: any) => {
   try {
-    await prisma.$connect();
+    const { ListName } = await request.json();
 
-    // Assuming you are creating 'AddList' records
-    const createdLists = await prisma.addList.createMany({
-      data: newList,
+    if (!ListName) {
+      return new NextResponse("Missing something", {
+        status: 400,
+      });
+    }
+    try {
+      const todoList = await prisma.addList.create({
+        data: {
+          ListName,
+        },
+      });
+
+      console.log("Created user:", todoList);
+      return new NextResponse(
+        JSON.stringify({ data: todoList, success: true }),
+        {
+          status: 200,
+        }
+      );
+    } catch (error) {
+      console.error("Error creating user:", error);
+      return new NextResponse(JSON.stringify(error), { status: 400 });
+    }
+  } catch (error) {
+    console.error("Error parsing request:", error);
+    return new NextResponse("Internal Server Error", {
+      status: 500,
     });
+  }
+};
 
-    await prisma.$disconnect();
-
-    return NextResponse.json({
-      message: "Post successfully created",
-      createdLists,
+export const GET = async () => {
+  try {
+    const prisma = new PrismaClient();
+    const todoData = await prisma.addList.findMany({});
+    console.log("TodoList", todoData);
+    return new NextResponse(JSON.stringify(todoData), {
+      status: 200,
     });
   } catch (error) {
-    console.error("Error creating lists:", error);
-    return NextResponse.json(
-      { message: "Error creating lists", error },
-      { status: 200 }
-    );
+    console.log("error", error);
+    throw new Error("Failed to fetch todo list data");
   }
 };
