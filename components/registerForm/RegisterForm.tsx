@@ -1,47 +1,24 @@
 "use client";
-import axios from "axios";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import gLogo from "../public/assets/google.png";
+import React from "react";
+import gLogo from "../../public/assets/google.png";
+import useRegisterForm from "./useRegisterForm";
+
 export default function RegisterForm() {
-  useEffect(() => {
-    signOut({
-      redirect: false,
-    });
-  }, []);
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [loading, setLoading] = useState(false);
-
-  const router = useRouter();
-
-  const register = async () => {
-    setLoading(true);
-    try {
-      await axios.post("/api/register", {
-        email,
-        password,
-        name,
-      });
-      setLoading(true);
-      toast.success("Successfully registered");
-
-      router.push("/signin");
-    } catch (err: any) {
-      console.log(err);
-      toast.error(err?.response?.data);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    email,
+    password,
+    name,
+    setEmail,
+    setName,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    loading,
+    register,
+  } = useRegisterForm();
 
   return (
     <div className="">

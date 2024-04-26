@@ -1,7 +1,6 @@
-import LogoutBtn from "@/components/LogoutBtn";
+import LogoutBtn from "@/components/logoutBtn/LogoutBtn";
 import { authOptions } from "@/libs/AuthOptions";
 import { getServerSession } from "next-auth";
-import { signOut } from "next-auth/react";
 import React from "react";
 
 export default async function Home() {

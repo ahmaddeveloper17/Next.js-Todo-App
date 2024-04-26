@@ -1,40 +1,13 @@
 "use client";
-import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import gLogo from "../public/assets/google.png";
+import React from "react";
+import gLogo from "../../public/assets/google.png";
+import useLoginForm from "./useLoginForm";
+
 export default function LoginForm() {
-  useEffect(() => {
-    signOut({
-      redirect: false,
-    });
-  }, []);
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [loading, setLoading] = useState(false);
-
-  const login = async () => {
-    setLoading(true);
-
-    const login = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
-
-    if (login?.ok) {
-      toast.success("Correct login");
-      window.location.assign("/todoList");
-    } else if (login?.error) {
-      toast.error(login?.error);
-    }
-
-    setLoading(false);
-  };
+  const { setEmail, setPassword, loading, email, password, login } =
+    useLoginForm();
 
   return (
     <div>

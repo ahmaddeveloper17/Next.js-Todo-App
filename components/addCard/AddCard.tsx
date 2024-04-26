@@ -1,9 +1,5 @@
 import React from "react";
-interface AddCardProps {
-  propName: string;
-  buttonStyles1?: React.CSSProperties;
-  buttonStyles2?: React.CSSProperties;
-}
+import { AddCardProps } from "@/app/types/type";
 function AddCard(props: AddCardProps) {
   return (
     <div

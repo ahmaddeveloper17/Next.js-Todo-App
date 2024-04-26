@@ -17,7 +17,12 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-model AddList {
+model List {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   ListName String
+}
+
+model Task {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  TaskName String
 }

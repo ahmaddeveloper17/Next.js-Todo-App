@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.3.6",
+    "@nextui-org/spinner": "^2.0.28",
     "@prisma/client": "^5.7.1",
     "axios": "^1.6.3",
     "bcrypt": "^5.1.1",

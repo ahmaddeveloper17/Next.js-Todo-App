@@ -5,24 +5,23 @@ export const POST = async (request: NextRequest) => {
   const prisma = new PrismaClient();
 
   try {
-    const { ListName, id } = await request.json();
+    const { TaskName } = await request.json();
 
-    if (!ListName) {
+    if (!TaskName) {
       return new NextResponse("Missing something", {
         status: 400,
       });
     }
     try {
-      const todoList = await prisma.list.create({
+      const todoTask = await prisma.task.create({
         data: {
-          ListName,
-          id,
+          TaskName,
         },
       });
 
-      console.log("Created user:", todoList);
+      console.log("Created user:", todoTask);
       return new NextResponse(
-        JSON.stringify({ data: todoList, success: true }),
+        JSON.stringify({ data: todoTask, success: true }),
         {
           status: 200,
         }
@@ -42,13 +41,10 @@ export const POST = async (request: NextRequest) => {
 export const GET = async () => {
   try {
     const prisma = new PrismaClient();
-    const todoData = await prisma.list.findMany({});
-    console.log("TodoList", todoData);
-    return new NextResponse(JSON.stringify(todoData), {
-      status: 200,
-    });
+    const response = await prisma.task.findMany();
+    console.log("Response : ", response);
+    return new NextResponse(JSON.stringify(response), { status: 200 });
   } catch (error) {
-    console.log("error", error);
-    throw new Error("Failed to fetch todo list data");
+    console.log("Error getting data Tasks", error);
   }
 };

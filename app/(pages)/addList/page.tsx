@@ -5,15 +5,15 @@ import iconImage from "../../../public/assets/icon.png";
 import settingWhite from "../../../public/assets/settingWhite.png";
 import Link from "next/link";
 import StyleSheet from "./style";
-import AddCard from "../../../components/AddCard";
-import AddListsButton from "@/components/AddListsButton";
+import AddCard from "../../../components/addCard/AddCard";
+import AddListsButton from "@/components/addListsButton/AddListsButton";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 const Page: React.FC = () => {
   const [listName, setListName] = useState("");
 
-  const handleCreateData = async () => {
+  const handleCreateList = async () => {
     try {
       console.log(listName);
 
@@ -106,7 +106,7 @@ const Page: React.FC = () => {
         />
       </div>
       <div>
-        <AddListsButton onClick={handleCreateData} />
+        <AddListsButton onClick={handleCreateList} />
       </div>
     </div>
   );

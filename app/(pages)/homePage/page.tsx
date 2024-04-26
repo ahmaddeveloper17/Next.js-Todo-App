@@ -1,12 +1,11 @@
 // Home page ...
-import React from "react";
+import React, { useState } from "react";
 import iconImage from "../../../public/assets/icon.png";
 import profileImage from "../../../public/assets/profile.png";
 import Image from "next/image";
 import Link from "next/link";
-import HomeTask from "@/components/HomeTask";
+import HomeTask from "@/components/hometask/HomeTask";
 function Home() {
-  
   return (
     <div>
       <div className=" bg-[#F9F5EB] w-auto h-[96px] flex">
@@ -28,13 +27,6 @@ function Home() {
           <h2 className=" text-[#EA5455] mt-[80px] pl-[32px] font-ibm-plex-mono text-[55px] md:text-[74px] font-medium leading-[39px]">
             Home List.
           </h2>
-        </div>
-        <div className="mt-[32px]">
-          <input
-            type="email"
-            placeholder="[task]"
-            className="  placeholder-[#EA5455] w-[300px] sm:w-[450px] text-[#EA5455] pl-[32px] bg-[#F9F5EB] mt-[16px] font-ibm-plex-mono text-2xl font-medium leading-[39px] rounded-[16px] border-[5px] bordor-color-[#FF7315] lg:w-[597px] h-[58px] border-[#FF7315]"
-          />
         </div>
         <HomeTask />
       </div>
