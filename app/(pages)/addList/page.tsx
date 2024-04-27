@@ -9,7 +9,6 @@ import AddCard from "../../../components/addCard/AddCard";
 import AddListsButton from "@/components/addListsButton/AddListsButton";
 import axios from "axios";
 import toast from "react-hot-toast";
-
 const Page: React.FC = () => {
   const [listName, setListName] = useState("");
 

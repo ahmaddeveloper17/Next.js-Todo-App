@@ -1,9 +1,17 @@
 "use client";
 import React from "react";
 import useHomeTask from "./useHomeTask";
+
 function HomeTask() {
-  const { taskName, tasks, handleCreateTask, handleInputChange } =
-    useHomeTask();
+  const {
+    taskName,
+    tasks,
+    handleCreateTask,
+    handleInputChange,
+    completedTasks,
+    toggleCompletion,
+  } = useHomeTask();
+
   return (
     <div>
       <div className="mt-[32px]">
@@ -12,7 +20,7 @@ function HomeTask() {
           placeholder="[task]"
           value={taskName}
           onChange={handleInputChange}
-          className="  placeholder-[#EA5455] w-[300px] sm:w-[450px] text-[#EA5455] pl-[32px] bg-[#F9F5EB] mt-[16px] font-ibm-plex-mono text-2xl font-medium leading-[39px] rounded-[16px] border-[5px] bordor-color-[#FF7315] lg:w-[597px] h-[58px] border-[#FF7315]"
+          className="placeholder-[#EA5455] w-[300px] sm:w-[450px] text-[#EA5455] pl-[32px] bg-[#F9F5EB] mt-[16px] font-ibm-plex-mono text-2xl font-medium leading-[39px] rounded-[16px] border-[5px] bordor-color-[#FF7315] lg:w-[597px] h-[58px] border-[#FF7315]"
         />
       </div>{" "}
       <div className="mt-[49px]">
@@ -27,10 +35,12 @@ function HomeTask() {
                 borderRadius: "4px",
                 outline: "none",
               }}
+              onClick={() => toggleCompletion(index)}
             />
             <label
-              className="font-ibm-plex-mono text-[40px] md:text-[60px] text-[#EA5455] font-medium"
-              style={{ textDecoration: "line-through" }}
+              className={`font-ibm-plex-mono text-[40px] md:text-[60px] text-[#EA5455] font-medium ${
+                completedTasks.includes(index) ? "line-through" : ""
+              }`}
             >
               {task.TaskName}
             </label>{" "}

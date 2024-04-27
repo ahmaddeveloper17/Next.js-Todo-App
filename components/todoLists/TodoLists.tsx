@@ -5,6 +5,7 @@ import useTodoLists from "./useTodoLists";
 
 function TodoLists() {
   const { loading, todoList } = useTodoLists();
+  console.log("todoList ", todoList);
   return (
     <div>
       {loading ? (

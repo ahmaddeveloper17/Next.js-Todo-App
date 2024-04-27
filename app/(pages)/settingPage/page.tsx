@@ -1,4 +1,4 @@
-// setting page  ...
+// // setting page  ...
 import Image from "next/image";
 import React from "react";
 import { authOptions } from "@/libs/AuthOptions";
@@ -7,6 +7,7 @@ import iconImage from "../../../public/assets/icon.png";
 import edit from "../../../public/assets/edit.png";
 import { getServerSession } from "next-auth";
 import LogoutBtn from "@/components/logoutBtn/LogoutBtn";
+
 export default async function page() {
   const session = await getServerSession(authOptions);
   return (

@@ -47,7 +47,27 @@ function useHomeTask() {
     handleGetTasks();
   }, []);
 
-  return { taskName, tasks, handleCreateTask, handleInputChange };
+  const [completedTasks, setCompletedTasks] = useState<number[]>([]);
+
+  const toggleCompletion = (index: number) => {
+    const newCompletedTasks = [...completedTasks];
+    if (newCompletedTasks.includes(index)) {
+      newCompletedTasks.splice(newCompletedTasks.indexOf(index), 1);
+    } else {
+      newCompletedTasks.push(index);
+    }
+    setCompletedTasks(newCompletedTasks);
+  };
+
+  return {
+    taskName,
+    tasks,
+    handleCreateTask,
+    handleInputChange,
+    completedTasks,
+    setCompletedTasks,
+    toggleCompletion,
+  };
 }
 
 export default useHomeTask;
