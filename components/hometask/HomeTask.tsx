@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import useHomeTask from "./useHomeTask";
-
+import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 function HomeTask() {
   const {
     taskName,
@@ -24,28 +24,46 @@ function HomeTask() {
         />
       </div>{" "}
       <div className="mt-[49px]">
-        {tasks.map((task, index) => (
-          <div key={index}>
-            <input
-              className="w-6 h-6 mr-2 cursor-pointer"
-              type="checkbox"
-              style={{
-                appearance: "none",
-                border: "2px solid #FF7315",
-                borderRadius: "4px",
-                outline: "none",
-              }}
-              onClick={() => toggleCompletion(index)}
-            />
-            <label
-              className={`font-ibm-plex-mono text-[40px] md:text-[60px] text-[#EA5455] font-medium ${
-                completedTasks.includes(index) ? "line-through" : ""
-              }`}
-            >
-              {task.TaskName}
-            </label>{" "}
-          </div>
-        ))}
+        <table>
+          <tbody>
+            {tasks.map((task, index) => (
+              <tr key={index}>
+                <td>
+                  <input
+                    className="w-8 h-8 mr-4 cursor-pointer"
+                    type="checkbox"
+                    style={{
+                      appearance: "none",
+                      border: "2px solid #FF7315",
+                      borderRadius: "4px",
+                      outline: "none",
+                    }}
+                    onClick={() => toggleCompletion(index)}
+                  />
+                </td>
+                <td>
+                  <label
+                    className={`font-ibm-plex-mono text-[40px] md:text-[60px] text-[#EA5455] font-medium ${
+                      completedTasks.includes(index) ? "line-through" : ""
+                    }`}
+                  >
+                    {task.TaskName}
+                  </label>
+                </td>
+                <td>
+                  <button className=" text-[#EA5455] bg-[#f9f5eb] p-3 rounded-full md:ml-[120px]">
+                    <RiEdit2Line size={30} />
+                  </button>
+                </td>
+                <td>
+                  <button className=" text-[#EA5455] bg-[#f9f5eb] p-3 rounded-full ">
+                    <RiDeleteBinLine size={30} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <div
         className="flex items-center justify-center"

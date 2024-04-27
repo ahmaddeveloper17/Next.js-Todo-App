@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
+// POST API
+
 export const POST = async (request: NextRequest) => {
   const prisma = new PrismaClient();
 
@@ -38,6 +40,8 @@ export const POST = async (request: NextRequest) => {
   }
 };
 
+// GET API
+
 export const GET = async () => {
   try {
     const prisma = new PrismaClient();
@@ -48,3 +52,14 @@ export const GET = async () => {
     console.log("Error getting data Tasks", error);
   }
 };
+
+// DELETE API
+
+// export const DELETE = (request: NextRequest) => {
+//  try {
+//   const task =
+//  } catch (error) {
+//   console.log("🚀 ~ DELETE ~ error:", error)
+
+//  }
+// }

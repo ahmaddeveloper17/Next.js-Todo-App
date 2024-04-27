@@ -17,7 +17,7 @@ function page() {
         <Link href="/settingPage">
           <Image
             src={settingWhite}
-            alt=""
+            alt="Image Not Found"
             className=" ml-[24px] pt-[24px] absolute right-[24px] "
           />
         </Link>
@@ -31,7 +31,7 @@ function page() {
         <div className="mt-[30px] ml-[50px]  md:ml-[295px]">
           <TodoLists />
           <Link href="/addList">
-            <h1 className="text-[#F4F4F4] font-medium text-[64px] underline">
+            <h1 className="text-[#F4F4F4] font-medium mt-6 text-[64px] underline">
               + Add List.
             </h1>
           </Link>
