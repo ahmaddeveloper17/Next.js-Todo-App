@@ -9,7 +9,7 @@ function useTodoLists() {
 
   const handleListData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/addList");
+      const response = await axios.get("http://localhost:3000/api/todoList");
       console.log("🚀 ~ handleListData ~ data:", response.data);
       setTodoList(response.data);
       setLoading(false);

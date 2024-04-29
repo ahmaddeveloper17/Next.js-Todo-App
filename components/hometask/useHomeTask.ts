@@ -5,13 +5,14 @@ import toast from "react-hot-toast";
 function useHomeTask() {
   const [tasks, setTasks] = useState<taskName[]>([]);
   const [taskName, setTaskName] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const handleCreateTask = async () => {
     try {
       console.log(taskName);
 
       const response = await axios.post(
-        "http://localhost:3000/api/addTask",
+        "http://localhost:3000/api/homeTask",
         {
           TaskName: taskName,
         },
@@ -25,6 +26,7 @@ function useHomeTask() {
       const responseData = response.data;
       console.log(responseData);
       toast.success("List Added Successfully");
+      setLoading(false);
     } catch (error) {
       console.error("Error creating data:", error);
     }
@@ -35,10 +37,11 @@ function useHomeTask() {
   };
   const handleGetTasks = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/addTask");
+      const response = await axios.get("http://localhost:3000/api/homeTask");
       const fetchedTasks = response.data;
       console.log("🚀 ~ handleGetTasks ~ fetchedTasks:", fetchedTasks);
       setTasks(fetchedTasks);
+      setLoading(false);
     } catch (error) {
       console.log("🚀 ~ handleGetTasks ~ error:", error);
     }
@@ -67,6 +70,7 @@ function useHomeTask() {
     completedTasks,
     setCompletedTasks,
     toggleCompletion,
+    loading,
   };
 }
 

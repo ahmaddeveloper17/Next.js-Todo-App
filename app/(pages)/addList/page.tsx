@@ -17,7 +17,7 @@ const Page: React.FC = () => {
       console.log(listName);
 
       const response = await axios.post(
-        "http://localhost:3000/api/addList",
+        "http://localhost:3000/api/todoList",
         {
           ListName: listName,
         },
