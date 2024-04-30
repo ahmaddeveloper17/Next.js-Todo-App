@@ -1,4 +1,5 @@
 export interface TodoItem {
+  id(id: any): unknown;
   ListName: string;
 }
 export interface ProtectedRootLayoutProps {
@@ -12,7 +13,8 @@ export interface AddCardProps {
 export interface NextAuthSessionProviderProps {
   children: React.ReactNode;
 }
-export interface taskName {
+export interface taskListProps {
+  id: string;
   TaskName: string;
 }
 export interface User {

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { taskName } from "@/app/types/type";
+import { taskListProps } from "@/app/types/type";
 import toast from "react-hot-toast";
+
 function useHomeTask() {
-  const [tasks, setTasks] = useState<taskName[]>([]);
+  const [tasks, setTasks] = useState<taskListProps[]>([]);
   const [taskName, setTaskName] = useState("");
   const [loading, setLoading] = useState(true);
+  const [taskId, setTaskId] = useState("");
 
+  //
   const handleCreateTask = async () => {
     try {
       console.log(taskName);
@@ -35,6 +38,8 @@ function useHomeTask() {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskName(event.target.value);
   };
+
+  //
   const handleGetTasks = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/homeTask");
@@ -62,6 +67,17 @@ function useHomeTask() {
     setCompletedTasks(newCompletedTasks);
   };
 
+  //
+  const handleDeleteTask = async (id: string) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/homeTask/?id=${id}`);
+
+      toast.success("Task Deleted Successfully");
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      toast.error("Failed to delete task");
+    }
+  };
   return {
     taskName,
     tasks,
@@ -71,6 +87,7 @@ function useHomeTask() {
     setCompletedTasks,
     toggleCompletion,
     loading,
+    handleDeleteTask,
   };
 }
 

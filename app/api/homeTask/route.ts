@@ -55,11 +55,24 @@ export const GET = async () => {
 
 // DELETE API
 
-// export const DELETE = (request: NextRequest) => {
-//  try {
-//   const task =
-//  } catch (error) {
-//   console.log("🚀 ~ DELETE ~ error:", error)
-
-//  }
-// }
+export const DELETE = async (request: NextRequest) => {
+  try {
+    const prisma = new PrismaClient();
+    const id = await request.nextUrl.searchParams.get("id");
+    console.log("🚀 ~ DELETE ~ id:", id);
+    if (!id) {
+      return new NextResponse("Missing task ID", {
+        status: 404,
+      });
+    }
+    const deletedTask = await prisma.task.delete({
+      where: {
+        id: id,
+      },
+    });
+    return new NextResponse(JSON.stringify(deletedTask), { status: 200 });
+  } catch (error) {
+    console.error("Error deleting task:", error);
+    return new NextResponse(JSON.stringify(error), { status: 500 });
+  }
+};

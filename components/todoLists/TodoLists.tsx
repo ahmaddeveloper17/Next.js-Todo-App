@@ -4,7 +4,7 @@ import useTodoLists from "./useTodoLists";
 import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 
 function TodoLists() {
-  const { loading, todoList } = useTodoLists();
+  const { loading, todoList, handleDeleteList } = useTodoLists();
   console.log("todoList ", todoList);
   return (
     <div>
@@ -59,7 +59,13 @@ function TodoLists() {
                       </button>
                     </td>
                     <td>
-                      <button className="text-[#F4F4F4] bg-[#232020] p-3 rounded-full">
+                      <button
+                        className="text-[#F4F4F4] bg-[#232020] p-3 rounded-full"
+                        onClick={() => {
+                          console.log("Deleting task with id:", todoItem.id);
+                          handleDeleteList(todoItem.id as any);
+                        }}
+                      >
                         <RiDeleteBinLine size={30} />
                       </button>
                     </td>

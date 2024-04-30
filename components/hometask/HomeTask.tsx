@@ -2,6 +2,7 @@
 import React from "react";
 import useHomeTask from "./useHomeTask";
 import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
+import { taskListProps } from "@/app/types/type";
 function HomeTask() {
   const {
     taskName,
@@ -11,6 +12,7 @@ function HomeTask() {
     handleInputChange,
     completedTasks,
     toggleCompletion,
+    handleDeleteTask,
   } = useHomeTask();
 
   return (
@@ -31,7 +33,7 @@ function HomeTask() {
             viewBox="0 0 200 200"
             width="350"
             height="350"
-            className="ml-[-60px] md:ml-10 lg:ml-20 xl:ml-60"
+            className="ml-[-60px] md:ml-10 lg:ml-20 xl:ml-55"
           >
             <linearGradient id="a11">
               <stop offset="0" stop-color="#EA5455" stop-opacity="0"></stop>
@@ -62,7 +64,7 @@ function HomeTask() {
           <>
             <table>
               <tbody>
-                {tasks.map((task, index) => (
+                {tasks.map((task: taskListProps, index) => (
                   <tr key={index}>
                     <td>
                       <input
@@ -87,12 +89,13 @@ function HomeTask() {
                       </label>
                     </td>
                     <td>
-                      <button className=" text-[#EA5455] bg-[#f9f5eb] p-3 rounded-full md:ml-[120px]">
-                        <RiEdit2Line size={30} />
-                      </button>
-                    </td>
-                    <td>
-                      <button className=" text-[#EA5455] bg-[#f9f5eb] p-3 rounded-full ">
+                      <button
+                        className="text-[#EA5455] bg-[#f9f5eb] p-3 rounded-full md:ml-[120px]"
+                        onClick={() => {
+                          console.log("Deleting task with id:", task.id);
+                          handleDeleteTask(task.id);
+                        }}
+                      >
                         <RiDeleteBinLine size={30} />
                       </button>
                     </td>
