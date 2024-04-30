@@ -1,5 +1,5 @@
 export interface TodoItem {
-  id(id: any): unknown;
+  id: string;
   ListName: string;
 }
 export interface ProtectedRootLayoutProps {

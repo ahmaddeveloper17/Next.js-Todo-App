@@ -20,8 +20,6 @@ export const POST = async (request: NextRequest) => {
           TaskName,
         },
       });
-
-      console.log("Created user:", todoTask);
       return new NextResponse(
         JSON.stringify({ data: todoTask, success: true }),
         {
@@ -29,11 +27,9 @@ export const POST = async (request: NextRequest) => {
         }
       );
     } catch (error) {
-      console.error("Error creating user:", error);
       return new NextResponse(JSON.stringify(error), { status: 400 });
     }
   } catch (error) {
-    console.error("Error parsing request:", error);
     return new NextResponse("Internal Server Error", {
       status: 500,
     });
@@ -46,10 +42,8 @@ export const GET = async () => {
   try {
     const prisma = new PrismaClient();
     const response = await prisma.task.findMany();
-    console.log("Response : ", response);
     return new NextResponse(JSON.stringify(response), { status: 200 });
   } catch (error) {
-    console.log("Error getting data Tasks", error);
   }
 };
 
@@ -59,7 +53,6 @@ export const DELETE = async (request: NextRequest) => {
   try {
     const prisma = new PrismaClient();
     const id = await request.nextUrl.searchParams.get("id");
-    console.log("🚀 ~ DELETE ~ id:", id);
     if (!id) {
       return new NextResponse("Missing task ID", {
         status: 404,
@@ -72,7 +65,6 @@ export const DELETE = async (request: NextRequest) => {
     });
     return new NextResponse(JSON.stringify(deletedTask), { status: 200 });
   } catch (error) {
-    console.error("Error deleting task:", error);
     return new NextResponse(JSON.stringify(error), { status: 500 });
   }
 };

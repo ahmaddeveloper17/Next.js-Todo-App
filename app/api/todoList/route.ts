@@ -5,7 +5,7 @@ export const POST = async (request: NextRequest) => {
   const prisma = new PrismaClient();
 
   try {
-    const { ListName } = await request.json(); // Extract userId from request payload
+    const { ListName } = await request.json();
 
     if (!ListName) {
       return new NextResponse("Missing something", {
@@ -18,8 +18,6 @@ export const POST = async (request: NextRequest) => {
           ListName,
         },
       });
-
-      console.log("Created todo list:", todoList);
       return new NextResponse(
         JSON.stringify({ data: todoList, success: true }),
         {
@@ -27,11 +25,9 @@ export const POST = async (request: NextRequest) => {
         }
       );
     } catch (error) {
-      console.error("Error creating todo list:", error);
       return new NextResponse(JSON.stringify(error), { status: 400 });
     }
   } catch (error) {
-    console.error("Error parsing request:", error);
     return new NextResponse("Internal Server Error", {
       status: 500,
     });
@@ -42,12 +38,10 @@ export const GET = async () => {
   try {
     const prisma = new PrismaClient();
     const todoData = await prisma.list.findMany({});
-    console.log("TodoList", todoData);
     return new NextResponse(JSON.stringify(todoData), {
       status: 200,
     });
   } catch (error) {
-    console.log("error", error);
     throw new Error("Failed to fetch todo list data");
   }
 };
@@ -57,7 +51,6 @@ export const DELETE = async (request: NextRequest) => {
   try {
     const prisma = new PrismaClient();
     const id = await request.nextUrl.searchParams.get("id");
-    console.log("🚀 ~ DELETE ~ id:", id);
     if (!id) {
       return new NextResponse("Missing task ID", {
         status: 404,
@@ -70,7 +63,25 @@ export const DELETE = async (request: NextRequest) => {
     });
     return new NextResponse(JSON.stringify(deletedlist), { status: 200 });
   } catch (error) {
-    console.error("Error deleting task:", error);
     return new NextResponse(JSON.stringify(error), { status: 500 });
+  }
+};
+
+export const PUT = async (request: NextRequest) => {
+  try {
+    const prisma = new PrismaClient();
+    const { list, id } = await request.json();
+
+    await prisma.list.update({
+      where: {
+        id: id,
+      },
+      data: {
+        ListName: list,
+      },
+    });
+    return NextResponse.json({ result: "success" });
+  } catch (error) {
+    return NextResponse.json({ error: "error" });
   }
 };
