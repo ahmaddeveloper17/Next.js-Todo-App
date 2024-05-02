@@ -5,9 +5,9 @@ export const POST = async (request: NextRequest) => {
   const prisma = new PrismaClient();
 
   try {
-    const { ListName } = await request.json();
+    const { ListName, Email } = await request.json();
 
-    if (!ListName) {
+    if (!ListName && !Email) {
       return new NextResponse("Missing something", {
         status: 400,
       });
@@ -16,6 +16,7 @@ export const POST = async (request: NextRequest) => {
       const todoList = await prisma.list.create({
         data: {
           ListName,
+          Email,
         },
       });
       return new NextResponse(
@@ -66,6 +67,8 @@ export const DELETE = async (request: NextRequest) => {
     return new NextResponse(JSON.stringify(error), { status: 500 });
   }
 };
+
+// PUT
 
 export const PUT = async (request: NextRequest) => {
   try {

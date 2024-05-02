@@ -5,6 +5,7 @@ import { authOptions } from "@/libs/AuthOptions";
 import { getServerSession } from "next-auth";
 import LogoutBtn from "@/components/logoutBtn/LogoutBtn";
 import { Images } from "@/public/assets/constants/constants";
+import ChangePassword from "@/components/changePassword/ChangePassword";
 export default async function page() {
   const session = await getServerSession(authOptions);
   return (
@@ -60,13 +61,7 @@ export default async function page() {
             />
           </div>
         </div>
-        <div className="flex justify-center">
-          <div className="flex flex-row  items-center bg-[#232020] rounded-[55px] border-[5px] w-[318px] h-[63px] border-[#FF7315] gap-3 mt-[64px]">
-            <h2 className=" rounded-[30px] text-[#FF7315] text-center bg-[#232020] font-ibm-plex-mono text-2xl font-medium leading-[39px] w-full h-full ps-[8px] py-[12px]">
-              Change Password
-            </h2>
-          </div>
-        </div>
+        <ChangePassword />
         <div className="flex justify-center">
           <div className="w-[318px] border-[#FF7315] h-[63px] mt-[10px] bg-[#FF7315] text-center border-[5px] rounded-[55px]">
             <button className="font-ibm-plex-mono text-30 font-medium leading-39 text-[#232020] py-[12px] text-center">
