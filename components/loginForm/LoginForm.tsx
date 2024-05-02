@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import gLogo from "../../public/assets/google.png";
+import { Images } from "@/public/assets/constants/constants";
 import useLoginForm from "./useLoginForm";
 
 export default function LoginForm() {
@@ -45,7 +45,7 @@ export default function LoginForm() {
         </Link>
         <div className="flex sm:flex-row bg-[#232020] rounded-[55px] border-[5px] max-w-[447px] min-w-[200px] h-[auto] border-[#FF7315] gap-3 mt-[64px]">
           <Image
-            src={gLogo}
+            src={Images.googleIcon}
             alt=""
             className="w-8 h-8 md:w-12 md:h-12 ml-[15px] mt-[3px]"
           />

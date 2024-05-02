@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import gLogo from "../../public/assets/google.png";
+import { Images } from "@/public/assets/constants/constants";
 import useRegisterForm from "./useRegisterForm";
 
 export default function RegisterForm() {
@@ -82,7 +82,7 @@ export default function RegisterForm() {
           }}
         >
           <Image
-            src={gLogo}
+            src={Images.googleIcon}
             alt=""
             className="w-8 h-8 md:w-12 md:h-12 ml-[24px]"
           />
