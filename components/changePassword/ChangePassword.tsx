@@ -1,10 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
+import useChangePassword from "./useChangePassword";
 
-function ChangePassword() {
-  const [visible, setVisible] = useState<boolean>(false);
-  const [newPassword, setNewPassword] = useState<string>("");
-  console.log(newPassword);
+const ChangePassword = () => {
+  const {
+    visible,
+    setVisible,
+    setNewPassword,
+    newPassword,
+    handleChangePassword,
+  } = useChangePassword();
 
   return (
     <>
@@ -40,7 +45,10 @@ function ChangePassword() {
                 <div className="bg-[#232020] px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     type="button"
-                    onClick={() => setVisible(false)}
+                    onClick={() => {
+                      setVisible(false);
+                      handleChangePassword();
+                    }}
                     className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                   >
                     Done
@@ -53,6 +61,6 @@ function ChangePassword() {
       )}
     </>
   );
-}
+};
 
 export default ChangePassword;
