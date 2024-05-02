@@ -1,22 +1,20 @@
 import Image from "next/image";
 import React from "react";
-import iconImage from "../../../public/assets/icon.png";
-import settingWhite from "../../../public/assets/settingWhite.png";
 import Link from "next/link";
 import TodoLists from "@/components/todoLists/TodoLists";
-
+import { Images } from "@/public/assets/constants/constants";
 function page() {
   return (
     <div className="bg ">
       <div className="w-auto flex">
         <Image
-          src={iconImage}
+          src={Images.mainIcon}
           alt=""
           className=" ml-[24px] pt-[24px] left-[24px]  "
         />
         <Link href="/settingPage">
           <Image
-            src={settingWhite}
+            src={Images.settingWhiteIcon}
             alt="Image Not Found"
             className=" ml-[24px] pt-[24px] absolute right-[24px] "
           />

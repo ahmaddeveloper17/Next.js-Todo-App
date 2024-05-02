@@ -2,19 +2,16 @@
 import Image from "next/image";
 import React from "react";
 import { authOptions } from "@/libs/AuthOptions";
-import settingProfile from "../../../public/assets/settingProfile.png";
-import iconImage from "../../../public/assets/icon.png";
-import edit from "../../../public/assets/edit.png";
 import { getServerSession } from "next-auth";
 import LogoutBtn from "@/components/logoutBtn/LogoutBtn";
-
+import { Images } from "@/public/assets/constants/constants";
 export default async function page() {
   const session = await getServerSession(authOptions);
   return (
     <div className="bg">
       <div className="w-auto flex">
         <Image
-          src={iconImage}
+          src={Images.mainIcon}
           alt=""
           className=" ml-[24px] pt-[24px] left-[24px]  "
         />
@@ -27,8 +24,12 @@ export default async function page() {
           </h2>
         </div>
         <div className="flex justify-center items-center">
-          <Image src={settingProfile} alt="" className="mt-[70px]" />
-          <Image src={edit} alt="" className="mt-[170px] ml-[-35px]" />
+          <Image src={Images.ProfileIcon} alt="" className="mt-[70px]" />
+          <Image
+            src={Images.editIcon}
+            alt=""
+            className="mt-[170px] ml-[-35px]"
+          />
         </div>
         <div className="flex justify-center">
           <h2 className="w-[234px] h-[39px] mt-[11px] text-[#F4F4F4] font-ibm-plex-mono font-mono text-30 font-normal leading-39 text-center">

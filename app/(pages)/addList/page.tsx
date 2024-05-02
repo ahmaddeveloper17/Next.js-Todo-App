@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import iconImage from "../../../public/assets/icon.png";
-import settingWhite from "../../../public/assets/settingWhite.png";
+import React, { useState } from "react";
 import Link from "next/link";
+import { Images } from "@/public/assets/constants/constants";
 import StyleSheet from "./style";
 import AddCard from "../../../components/addCard/AddCard";
 import AddListsButton from "@/components/addListsButton/AddListsButton";
 import axios from "axios";
 import toast from "react-hot-toast";
+
 const Page: React.FC = () => {
   const [listName, setListName] = useState("");
 
@@ -43,9 +43,9 @@ const Page: React.FC = () => {
   return (
     <div className="bg ">
       <div className="flex justify-between mt-[25px] px-[25px]">
-        <Image src={iconImage} alt="" />
+        <Image src={Images.mainIcon} alt="" />
         <Link href="/settingPage">
-          <Image src={settingWhite} alt="" />
+          <Image src={Images.settingWhiteIcon} alt="" />
         </Link>
       </div>
       <div className=" text-center">

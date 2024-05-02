@@ -1,22 +1,21 @@
 // Home page ...
-import React, { useState } from "react";
-import iconImage from "../../../public/assets/icon.png";
-import profileImage from "../../../public/assets/profile.png";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Images } from "@/public/assets/constants/constants";
 import HomeTask from "@/components/hometask/HomeTask";
 function Home() {
   return (
     <div>
       <div className=" bg-[#F9F5EB] w-auto h-[96px] flex">
         <Image
-          src={iconImage}
+          src={Images.mainIcon}
           alt=""
           className=" ml-[24px] pt-[24px] left-[24px]  "
         />
         <Link href="/settingPage">
           <Image
-            src={profileImage}
+            src={Images.settingRedIcon}
             alt=""
             className=" ml-[24px] pt-[24px] absolute right-[24px] "
           />
