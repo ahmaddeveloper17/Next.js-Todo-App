@@ -110,7 +110,7 @@ function HomeTask() {
         className="flex items-center justify-center"
         onClick={handleCreateTask}
       >
-        <div className="w-[210px] mt-[34px] border-[#FF7315] h-[63px] bg-[#FF7315] border-[5px] rounded-[55px]">
+        <div className="w-[210px] mt-[34px] border-Border h-[63px] bg-Border border-[5px] rounded-[55px]">
           <button className="font-ibm-plex-mono text-30 font-medium leading-39 text-[#232020] py-[12px] px-[55px]">
             <h2>Add Task.</h2>
           </button>

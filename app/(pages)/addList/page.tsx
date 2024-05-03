@@ -61,7 +61,7 @@ const Page: React.FC = () => {
         <input
           type="text"
           placeholder="List name"
-          className="placeholder-[#F4F4F4] text-[#F4F4F4] bg-[#232020] mt-[16px] pl-[32px] pr-[32px] font-ibm-plex-mono text-2xl font-medium leading-[39px] rounded-[30px] border-[5px] bordor-color-[#FF7315] max-w-[447px] h-[58px] border-[#FF7315]"
+          className="placeholder-Accent text-Accent bg-Background mt-[16px] pl-[32px] pr-[32px] font-ibm-plex-mono text-2xl font-medium leading-[39px] rounded-[30px] border-[5px] bordor-color-Border max-w-[447px] h-[58px] border-Border"
           value={listName}
           onChange={handleInputChange}
         />

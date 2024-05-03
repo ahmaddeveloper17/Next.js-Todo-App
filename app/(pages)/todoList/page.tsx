@@ -22,14 +22,14 @@ function page() {
       </div>
       <div>
         <div className="  flex flex-col items-center">
-          <h2 className=" text-[#F4F4F4] text-[40px] mt-[80px] pl-[32px] font-ibm-plex-mono   md:text-[64px] font-medium leading-[39px]">
-            Todo Lists<span className="text-[#EA5455]">.</span>
+          <h2 className=" text-Accent text-[40px] mt-[80px] pl-[32px] font-ibm-plex-mono   md:text-[64px] font-medium leading-[39px]">
+            Todo Lists<span className="text-Border">.</span>
           </h2>
         </div>
         <div className="mt-[30px] ml-[50px]  md:ml-[295px]">
           <TodoLists />
           <Link href="/addList">
-            <h1 className="text-[#F4F4F4] font-medium mt-6 text-[40px] md:text-[64px] underline">
+            <h1 className="text-Accent font-medium mt-6 text-[40px] md:text-[64px] underline">
               + Add List.
             </h1>
           </Link>
