@@ -7,9 +7,9 @@ export const POST = async (request: NextRequest) => {
   const prisma = new PrismaClient();
 
   try {
-    const { TaskName } = await request.json();
+    const { TaskName, TaskId } = await request.json();
 
-    if (!TaskName) {
+    if (!TaskName || !TaskId) {
       return new NextResponse("Missing something", {
         status: 400,
       });
@@ -18,6 +18,7 @@ export const POST = async (request: NextRequest) => {
       const todoTask = await prisma.task.create({
         data: {
           TaskName,
+          TaskId,
         },
       });
       return new NextResponse(
@@ -43,8 +44,7 @@ export const GET = async () => {
     const prisma = new PrismaClient();
     const response = await prisma.task.findMany();
     return new NextResponse(JSON.stringify(response), { status: 200 });
-  } catch (error) {
-  }
+  } catch (error) {}
 };
 
 // DELETE API

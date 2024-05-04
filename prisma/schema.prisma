@@ -25,4 +25,5 @@ model List {
 model Task {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   TaskName String
+  TaskId   String
 }

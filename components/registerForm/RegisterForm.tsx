@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Images } from "@/public/assets/constants/constants";
+import { Images } from "@/constants/constants";
 import useRegisterForm from "./useRegisterForm";
 
 export default function RegisterForm() {

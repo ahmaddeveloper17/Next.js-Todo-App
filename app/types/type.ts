@@ -1,4 +1,5 @@
 export interface TodoItem {
+  Email: string;
   id: string;
   ListName: string;
 }
@@ -16,6 +17,7 @@ export interface NextAuthSessionProviderProps {
 export interface taskListProps {
   id: string;
   TaskName: string;
+  TaskId: string;
 }
 export interface User {
   id: string;

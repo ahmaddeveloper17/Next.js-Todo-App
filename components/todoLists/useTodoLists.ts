@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { TodoItem } from "@/app/types/type";
 import toast from "react-hot-toast";
+import { getSession } from "next-auth/react";
 
 function useTodoLists() {
   const [loading, setLoading] = useState(true);
@@ -17,11 +18,28 @@ function useTodoLists() {
     try {
       const response = await axios.get("http://localhost:3000/api/todoList");
       setTodoList(response.data);
+      console.log(response.data);
+
       setLoading(false);
     } catch (error) {
       console.log("Error fetching data:", error);
     }
   };
+
+  const [currentUserEmail, setCurrentUserEmail] = useState<string>("");
+  console.log("todoList ", todoList);
+  const handleEmail = async () => {
+    const session = await getSession();
+    const email = session?.user?.email || "";
+    setCurrentUserEmail(email);
+  };
+  useEffect(() => {
+    handleEmail();
+  }, []);
+  const filteredTodoList = todoList.filter(
+    (todoItem) => todoItem.Email === currentUserEmail
+  );
+
   //delete
   const handleDeleteList = async (id: string) => {
     try {
@@ -33,7 +51,7 @@ function useTodoLists() {
       toast.error("Failed to delete task");
     }
   };
-// update
+  // update
   const handleUpdateList = async (todoItem: TodoItem) => {
     setListId(todoItem.id);
     setListName(todoItem.ListName);
@@ -62,11 +80,14 @@ function useTodoLists() {
     handleListData();
   }, []);
 
+  
+
   return {
     loading,
     todoList,
     isVisible,
     listName,
+    filteredTodoList,
     setListName,
     handleDeleteList,
     handleUpdateList,

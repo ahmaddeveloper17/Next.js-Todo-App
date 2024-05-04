@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import useHomeTask from "./useHomeTask";
-import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
+import { RiDeleteBinLine } from "react-icons/ri";
 import { taskListProps } from "@/app/types/type";
+
 function HomeTask() {
   const {
     taskName,
@@ -11,6 +12,7 @@ function HomeTask() {
     handleCreateTask,
     handleInputChange,
     completedTasks,
+    filteredTodoTask,
     toggleCompletion,
     handleDeleteTask,
   } = useHomeTask();
@@ -64,7 +66,7 @@ function HomeTask() {
           <>
             <table>
               <tbody>
-                {tasks.map((task: taskListProps, index) => (
+                {filteredTodoTask.map((task: taskListProps, index) => (
                   <tr key={index}>
                     <td>
                       <input

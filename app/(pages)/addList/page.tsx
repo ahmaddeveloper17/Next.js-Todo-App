@@ -2,13 +2,14 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Images } from "@/public/assets/constants/constants";
+import { Images } from "@/constants/constants";
 import StyleSheet from "./style";
 import AddCard from "../../../components/addCard/AddCard";
 import AddListsButton from "@/components/addListsButton/AddListsButton";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { getSession } from "next-auth/react";
+
 const Page: React.FC = () => {
   const [listName, setListName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,6 +21,7 @@ const Page: React.FC = () => {
   useEffect(() => {
     sessionData();
   }, []);
+
   const handleCreateList = async () => {
     try {
       console.log(listName);

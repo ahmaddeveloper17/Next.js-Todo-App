@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Images } from "@/public/assets/constants/constants";
+import { Images } from "@/constants/constants";
 import useLoginForm from "./useLoginForm";
 
 export default function LoginForm() {

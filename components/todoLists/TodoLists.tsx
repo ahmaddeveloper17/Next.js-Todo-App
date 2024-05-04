@@ -3,19 +3,19 @@ import React from "react";
 import useTodoLists from "./useTodoLists";
 import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 import { TodoItem } from "@/app/types/type";
-
+import Link from "next/link";
 function TodoLists() {
   const {
     loading,
-    todoList,
     isVisible,
     listName,
+    filteredTodoList,
     setListName,
     handleDeleteList,
     handleUpdateList,
     update,
   } = useTodoLists();
-  console.log("todoList ", todoList);
+
   return (
     <>
       {!isVisible ? (
@@ -58,12 +58,19 @@ function TodoLists() {
               <div className="text-Accent  font-medium text-[30px] md:text-[64px] underline">
                 <table>
                   <tbody>
-                    {todoList.map((todoItem: TodoItem, index) => (
+                    {filteredTodoList.map((todoItem: TodoItem, index) => (
                       <tr key={index}>
                         <td>
-                          <a href={`/homePage?ListName=${todoItem.ListName}`}>
+                          <Link
+                            // href={`/homePage?ListName=${todoItem.ListName}&id=${todoItem.id}`}
+                            href={{
+                              pathname: `/homePage`,
+                              query: { id: todoItem.id } as any,
+                            }}
+                          >
+                            {" "}
                             <h1>{todoItem.ListName}</h1>
-                          </a>
+                          </Link>
                         </td>
                         <td>
                           <button

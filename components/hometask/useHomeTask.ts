@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { taskListProps } from "@/app/types/type";
 import toast from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
 
 function useHomeTask() {
   const [tasks, setTasks] = useState<taskListProps[]>([]);
   const [taskName, setTaskName] = useState("");
   const [loading, setLoading] = useState(true);
-  const [taskId, setTaskId] = useState("");
+
+  const params = useSearchParams();
+  const taskid = params.get("id");
+  console.log(" User Id ", taskid);
 
   //
   const handleCreateTask = async () => {
@@ -18,6 +22,7 @@ function useHomeTask() {
         "http://localhost:3000/api/homeTask",
         {
           TaskName: taskName,
+          TaskId: taskid,
         },
         {
           headers: {
@@ -39,7 +44,6 @@ function useHomeTask() {
     setTaskName(event.target.value);
   };
 
-  //
   const handleGetTasks = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/homeTask");
@@ -51,10 +55,12 @@ function useHomeTask() {
       console.log("🚀 ~ handleGetTasks ~ error:", error);
     }
   };
+
   useEffect(() => {
     handleGetTasks();
   }, []);
 
+  const filteredTodoTask = tasks.filter((task) => task.TaskId === taskid);
   const [completedTasks, setCompletedTasks] = useState<number[]>([]);
 
   const toggleCompletion = (index: number) => {
@@ -84,6 +90,7 @@ function useHomeTask() {
     handleCreateTask,
     handleInputChange,
     completedTasks,
+    filteredTodoTask,
     setCompletedTasks,
     toggleCompletion,
     loading,

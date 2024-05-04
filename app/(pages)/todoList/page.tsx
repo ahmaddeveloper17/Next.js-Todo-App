@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import TodoLists from "@/components/todoLists/TodoLists";
-import { Images } from "@/public/assets/constants/constants";
+import { Images } from "@/constants/constants";
 function page() {
   return (
     <div className="bg ">
