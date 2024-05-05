@@ -7,9 +7,11 @@ export interface ProtectedRootLayoutProps {
   children: React.ReactNode;
 }
 export interface AddCardProps {
-  propName: string;
-  buttonStyles1?: React.CSSProperties;
-  buttonStyles2?: React.CSSProperties;
+  label: string;
+  bgColor:string
+  textColor:string
+  borderColor:string
+  onClick: (e:any) => void;
 }
 export interface NextAuthSessionProviderProps {
   children: React.ReactNode;

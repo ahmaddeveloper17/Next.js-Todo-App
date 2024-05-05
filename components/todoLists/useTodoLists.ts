@@ -9,9 +9,7 @@ function useTodoLists() {
   const [loading, setLoading] = useState(true);
   const [todoList, setTodoList] = useState<TodoItem[]>([]);
   const [listName, setListName] = useState<string>("");
-  console.log("🚀 ~ useTodoLists ~ listName:", listName);
   const [listId, setListId] = useState<string>("");
-  console.log("🚀 ~ useTodoLists ~ listId:", listId);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   // get
   const handleListData = async () => {
@@ -79,8 +77,6 @@ function useTodoLists() {
   useEffect(() => {
     handleListData();
   }, []);
-
-  
 
   return {
     loading,

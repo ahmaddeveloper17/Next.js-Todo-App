@@ -2,8 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Images } from "@/constants/constants";
-import StyleSheet from "./style";
+import { Images, addCardList } from "@/constants/constants";
 import AddCard from "../../../components/addCard/AddCard";
 import AddListsButton from "@/components/addListsButton/AddListsButton";
 import axios from "axios";
@@ -13,6 +12,15 @@ import { getSession } from "next-auth/react";
 const Page: React.FC = () => {
   const [listName, setListName] = useState("");
   const [email, setEmail] = useState("");
+  const [textColor, settextColor] = useState("");
+  console.log("🚀 ~ textColor:", textColor);
+  const [borderColor, setBorderColor] = useState("");
+  console.log("🚀 ~ borderColor:", borderColor);
+  const [label, setLabel] = useState("");
+  console.log("🚀 ~ label:", label);
+  const [bgColor, setBgColor] = useState("");
+  console.log("🚀 ~ bgColor:", bgColor);
+
   const sessionData = async () => {
     const session = await getSession();
     const email = session?.user?.email || "";
@@ -31,6 +39,10 @@ const Page: React.FC = () => {
         {
           ListName: listName,
           Email: email,
+          textColor: textColor,
+          borderColor: borderColor,
+          label: label,
+          bgColor: bgColor,
         },
         {
           headers: {
@@ -51,6 +63,13 @@ const Page: React.FC = () => {
     setListName(event.target.value);
   };
 
+  const handleSelectColor = (value: any) => {
+    setBgColor(value.bgColor);
+    setBorderColor(value.borderColor);
+    setLabel(value.label);
+    settextColor(value.textColor);
+  };
+
   return (
     <div className="bg ">
       <div className="flex justify-between mt-[25px] px-[25px]">
@@ -69,13 +88,32 @@ const Page: React.FC = () => {
         />
       </div>
       <div className=" flex flex-wrap flex-col md:flex-row md:ml-[277px] items-center md:mt-[31px]">
-        <AddCard
-          propName="Vintage Garden"
-          buttonStyles1={StyleSheet.one1}
-          buttonStyles2={StyleSheet.one2}
+        {addCardList.map((value, i) => {
+          return (
+            <AddCard
+              key={i}
+              label={value.label}
+              bgColor={value.bgColor}
+              borderColor={value.borderColor}
+              textColor={value.textColor}
+              onClick={() => handleSelectColor(value)}
+            />
+          );
+        })}
+        {/* <AddCard
+          label="Vintage Garden"
+          bgColor="#CCF0C3"
+          borderColor="#BCA3CA"
+          textColor="textColor-100"
         />
         <AddCard
-          propName="Cosmic Symphony"
+          label="Vintage Garden"
+          bgColor="amber-400"
+          borderColor=""
+          textColor="textColor-200"
+        /> */}
+        {/* <AddCard
+          propName="Cosmic Symphony jshj"
           buttonStyles1={StyleSheet.two1}
           buttonStyles2={StyleSheet.two2}
         />
@@ -113,7 +151,7 @@ const Page: React.FC = () => {
           propName="Oceanic Serenity"
           buttonStyles1={StyleSheet.nine1}
           buttonStyles2={StyleSheet.nine2}
-        />
+        /> */}
       </div>
       <div>
         <AddListsButton onClick={handleCreateList} />

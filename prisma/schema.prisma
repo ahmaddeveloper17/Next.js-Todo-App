@@ -17,9 +17,13 @@ model User {
 }
 
 model List {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  ListName String
-  Email    String
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  ListName    String
+  Email       String
+  textColor   String
+  bgColor     String
+  label       String
+  borderColor String
 }
 
 model Task {

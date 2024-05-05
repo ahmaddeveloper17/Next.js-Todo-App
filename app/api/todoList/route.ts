@@ -5,9 +5,17 @@ export const POST = async (request: NextRequest) => {
   const prisma = new PrismaClient();
 
   try {
-    const { ListName, Email } = await request.json();
+    const { ListName, Email, bgColor, label, textColor, borderColor } =
+      await request.json();
 
-    if (!ListName && !Email) {
+    if (
+      !ListName &&
+      !Email &&
+      !bgColor &&
+      !label &&
+      !textColor &&
+      !borderColor
+    ) {
       return new NextResponse("Missing something", {
         status: 400,
       });
@@ -17,6 +25,10 @@ export const POST = async (request: NextRequest) => {
         data: {
           ListName,
           Email,
+          bgColor,
+          label,
+          textColor,
+          borderColor,
         },
       });
       return new NextResponse(
