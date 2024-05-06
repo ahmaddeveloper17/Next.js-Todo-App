@@ -13,13 +13,9 @@ const Page: React.FC = () => {
   const [listName, setListName] = useState("");
   const [email, setEmail] = useState("");
   const [textColor, settextColor] = useState("");
-  console.log("🚀 ~ textColor:", textColor);
   const [borderColor, setBorderColor] = useState("");
-  console.log("🚀 ~ borderColor:", borderColor);
   const [label, setLabel] = useState("");
-  console.log("🚀 ~ label:", label);
   const [bgColor, setBgColor] = useState("");
-  console.log("🚀 ~ bgColor:", bgColor);
 
   const sessionData = async () => {
     const session = await getSession();
@@ -87,31 +83,36 @@ const Page: React.FC = () => {
           onChange={handleInputChange}
         />
       </div>
-      <div className=" flex flex-wrap flex-col md:flex-row md:ml-[277px] items-center md:mt-[31px]">
+      <div className=" flex flex-wrap flex-col  md:flex-row md:ml-[277px] items-center md:mt-[31px]">
         {addCardList.map((value, i) => {
-          return (
-            <AddCard
-              key={i}
-              label={value.label}
-              bgColor={value.bgColor}
-              borderColor={value.borderColor}
-              textColor={value.textColor}
-              onClick={() => handleSelectColor(value)}
-            />
-          );
+          if (
+            value.bgColor &&
+            value.borderColor &&
+            value.label &&
+            value.textColor
+          ) {
+            return (
+              <AddCard
+                key={i}
+                label={value.label}
+                bgColor={value.bgColor}
+                textColor={value.textColor}
+                borderColor={value.borderColor}
+                className={`bg-${value.bgColor} border-${value.borderColor} text-${value.textColor}`}
+                onClick={() => handleSelectColor(value)}
+              />
+            );
+          } else {
+            return null; // or any other fallback content you want
+          }
         })}
+
         {/* <AddCard
           label="Vintage Garden"
           bgColor="#CCF0C3"
           borderColor="#BCA3CA"
           textColor="textColor-100"
         />
-        <AddCard
-          label="Vintage Garden"
-          bgColor="amber-400"
-          borderColor=""
-          textColor="textColor-200"
-        /> */}
         {/* <AddCard
           propName="Cosmic Symphony jshj"
           buttonStyles1={StyleSheet.two1}

@@ -2,16 +2,21 @@ export interface TodoItem {
   Email: string;
   id: string;
   ListName: string;
+  bgColor: string;
+  label: string;
+  textColor: string;
+  borderColor: string;
 }
 export interface ProtectedRootLayoutProps {
   children: React.ReactNode;
 }
 export interface AddCardProps {
   label: string;
-  bgColor:string
-  textColor:string
-  borderColor:string
-  onClick: (e:any) => void;
+  bgColor: string;
+  textColor: string;
+  borderColor: string;
+  className: string;
+  onClick: (e: any) => void;
 }
 export interface NextAuthSessionProviderProps {
   children: React.ReactNode;
@@ -27,3 +32,7 @@ export interface User {
   email?: string | null | undefined;
   image?: string | null | undefined;
 }
+export type CounterState = {
+  CounterState: any;
+  value: number;
+};

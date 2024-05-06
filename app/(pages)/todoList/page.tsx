@@ -40,3 +40,16 @@ function page() {
 }
 
 export default page;
+// import MyComponent from "@/components/addCard/AddCard";
+// import React from "react";
+
+// function page() {
+//   return (
+//     <div>
+//       <MyComponent />
+//       jhkhk
+//     </div>
+//   );
+// }
+
+// export default page;

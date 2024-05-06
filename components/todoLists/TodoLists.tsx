@@ -55,7 +55,7 @@ function TodoLists() {
             </svg>
           ) : (
             <>
-              <div className="text-Accent  font-medium text-[30px] md:text-[64px] underline">
+              <div className="text-Accent  font-medium text-[30px] md:text-[64px]">
                 <table>
                   <tbody>
                     {filteredTodoList.map((todoItem: TodoItem, index) => (
@@ -69,7 +69,9 @@ function TodoLists() {
                             }}
                           >
                             {" "}
-                            <h1>{todoItem.ListName}</h1>
+                            <h1 className={`${todoItem.textColor}`}>
+                              {todoItem.ListName}
+                            </h1>
                           </Link>
                         </td>
                         <td>
