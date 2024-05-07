@@ -3,20 +3,19 @@ import axios from "axios";
 import { taskListProps } from "@/app/types/type";
 import toast from "react-hot-toast";
 import { useSearchParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import { fetchtask } from "@/redux/slices/task";
 
 function useHomeTask() {
-  const [tasks, setTasks] = useState<taskListProps[]>([]);
-  const [taskName, setTaskName] = useState("");
-  const [loading, setLoading] = useState(true);
 
+  const [taskName, setTaskName] = useState("");
   const params = useSearchParams();
   const taskid = params.get("id");
-  console.log(" User Id ", taskid);
 
   //
   const handleCreateTask = async () => {
     try {
-      console.log(taskName);
 
       const response = await axios.post(
         "http://localhost:3000/api/homeTask",
@@ -32,9 +31,7 @@ function useHomeTask() {
       );
 
       const responseData = response.data;
-      console.log(responseData);
       toast.success("List Added Successfully");
-      setLoading(false);
     } catch (error) {
       console.error("Error creating data:", error);
     }
@@ -43,24 +40,12 @@ function useHomeTask() {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskName(event.target.value);
   };
-
-  const handleGetTasks = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/api/homeTask");
-      const fetchedTasks = response.data;
-      console.log("🚀 ~ handleGetTasks ~ fetchedTasks:", fetchedTasks);
-      setTasks(fetchedTasks);
-      setLoading(false);
-    } catch (error) {
-      console.log("🚀 ~ handleGetTasks ~ error:", error);
-    }
-  };
-
+  const dispatch = useDispatch();
+  const { tasks, loading } = useSelector((state: RootState) => state.task);
   useEffect(() => {
-    handleGetTasks();
-  }, []);
-
-  const filteredTodoTask = tasks.filter((task) => task.TaskId === taskid);
+    dispatch(fetchtask() as any);
+  }, [dispatch]);
+  const filteredTodoTask = tasks.filter((tasks) => tasks.TaskId == taskid);
   const [completedTasks, setCompletedTasks] = useState<number[]>([]);
 
   const toggleCompletion = (index: number) => {

@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import TodoLists from "@/components/todoLists/TodoLists";
 import { Images } from "@/constants/constants";
+
 function page() {
   return (
     <div className="bg ">
@@ -40,16 +41,3 @@ function page() {
 }
 
 export default page;
-// import MyComponent from "@/components/addCard/AddCard";
-// import React from "react";
-
-// function page() {
-//   return (
-//     <div>
-//       <MyComponent />
-//       jhkhk
-//     </div>
-//   );
-// }
-
-// export default page;

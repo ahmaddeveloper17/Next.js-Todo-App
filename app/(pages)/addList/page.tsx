@@ -28,7 +28,6 @@ const Page: React.FC = () => {
 
   const handleCreateList = async () => {
     try {
-      console.log(listName);
 
       const response = await axios.post(
         "http://localhost:3000/api/todoList",
@@ -48,7 +47,6 @@ const Page: React.FC = () => {
       );
 
       const responseData = response.data;
-      console.log(responseData);
       toast.success("List Added Successfully");
     } catch (error) {
       console.error("Error creating data:", error);
@@ -106,53 +104,6 @@ const Page: React.FC = () => {
             return null; // or any other fallback content you want
           }
         })}
-
-        {/* <AddCard
-          label="Vintage Garden"
-          bgColor="#CCF0C3"
-          borderColor="#BCA3CA"
-          textColor="textColor-100"
-        />
-        {/* <AddCard
-          propName="Cosmic Symphony jshj"
-          buttonStyles1={StyleSheet.two1}
-          buttonStyles2={StyleSheet.two2}
-        />
-        <AddCard
-          propName="Rustic Charm"
-          buttonStyles1={StyleSheet.three1}
-          buttonStyles2={StyleSheet.three2}
-        />
-        <AddCard
-          propName="Sunset Serenade"
-          buttonStyles1={StyleSheet.four1}
-          buttonStyles2={StyleSheet.four2}
-        />
-        <AddCard
-          propName="Industrial Chic"
-          buttonStyles1={StyleSheet.five1}
-          buttonStyles2={StyleSheet.five2}
-        />
-        <AddCard
-          propName="Blackout Neutrals"
-          buttonStyles1={StyleSheet.six1}
-          buttonStyles2={StyleSheet.six2}
-        />
-        <AddCard
-          propName="Vibrant Spectrum"
-          buttonStyles1={StyleSheet.seven1}
-          buttonStyles2={StyleSheet.seven2}
-        />
-        <AddCard
-          propName=" Coastal Sunrise"
-          buttonStyles1={StyleSheet.eight1}
-          buttonStyles2={StyleSheet.eight2}
-        />
-        <AddCard
-          propName="Oceanic Serenity"
-          buttonStyles1={StyleSheet.nine1}
-          buttonStyles2={StyleSheet.nine2}
-        /> */}
       </div>
       <div>
         <AddListsButton onClick={handleCreateList} />

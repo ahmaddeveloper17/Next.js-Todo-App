@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import LogoutBtn from "@/components/logoutBtn/LogoutBtn";
 import { Images } from "@/constants/constants";
 import ChangePassword from "@/components/changePassword/ChangePassword";
+
 export default async function page() {
   const session = await getServerSession(authOptions);
   return (

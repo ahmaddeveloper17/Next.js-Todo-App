@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import prismadb from "@/libs/prismadb";
 import bcrypt from "bcrypt";
 import GoogleProvider from "next-auth/providers/google";
+
 export const authOptions: AuthOptions = {
   pages: {
     signIn: "/signin",

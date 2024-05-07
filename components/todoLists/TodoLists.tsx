@@ -4,13 +4,15 @@ import useTodoLists from "./useTodoLists";
 import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 import { TodoItem } from "@/app/types/type";
 import Link from "next/link";
+
 function TodoLists() {
   const {
     loading,
     isVisible,
     listName,
-    filteredTodoList,
+    labels,
     setListName,
+    filteredTodoList,
     handleDeleteList,
     handleUpdateList,
     update,
@@ -69,9 +71,7 @@ function TodoLists() {
                             }}
                           >
                             {" "}
-                            <h1 className={`${todoItem.textColor}`}>
-                              {todoItem.ListName}
-                            </h1>
+                            <h1>{todoItem.ListName}</h1>
                           </Link>
                         </td>
                         <td>
@@ -86,10 +86,7 @@ function TodoLists() {
                           <button
                             className="text-Accent bg-Background p-3 rounded-full"
                             onClick={() => {
-                              console.log(
-                                "Deleting task with id:",
-                                todoItem.id
-                              );
+                              
                               handleDeleteList(todoItem.id as any);
                             }}
                           >

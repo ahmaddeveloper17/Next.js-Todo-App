@@ -7,7 +7,6 @@ import { taskListProps } from "@/app/types/type";
 function HomeTask() {
   const {
     taskName,
-    tasks,
     loading,
     handleCreateTask,
     handleInputChange,
@@ -94,7 +93,6 @@ function HomeTask() {
                       <button
                         className="text-[#EA5455] bg-[#f9f5eb] p-3 rounded-full md:ml-[120px]"
                         onClick={() => {
-                          console.log("Deleting task with id:", task.id);
                           handleDeleteTask(task.id);
                         }}
                       >

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Images } from "@/constants/constants";
 import HomeTask from "@/components/hometask/HomeTask";
+
 function Home() {
   return (
     <div>

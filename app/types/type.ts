@@ -26,6 +26,11 @@ export interface taskListProps {
   TaskName: string;
   TaskId: string;
 }
+export interface task {
+  id: string;
+  TaskName: string;
+  TaskId: string;
+}
 export interface User {
   id: string;
   name?: string | null | undefined;
@@ -35,4 +40,15 @@ export interface User {
 export type CounterState = {
   CounterState: any;
   value: number;
+};
+
+export type ListSlice = {
+  labels: TodoItem[];
+  loading: boolean;
+  error: null | undefined | string;
+};
+export type TaskSlice = {
+  tasks: taskListProps[];
+  loading: boolean;
+  error: null | undefined | string;
 };

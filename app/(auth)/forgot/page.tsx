@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Images } from "@/constants/constants";
+
 function page() {
   return (
     <div className="bg w-full h-full flex flex-col ">
